@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>24秒计时器</title>
+  <style>
+    body {
+      background-color: black;
+      color: white;
+      display: flex;
+      justify-content: center; /* 水平方向居中 */
+      align-items: center; /* 垂直方向居中 */
+      height: 100vh; /* 使用视窗高度作为高度，使页面居中显示 */
+      flex-direction: column; /* 设置主轴方向为垂直 */
+    }
+    .timer {
+      font-size: 72px; /* 调整数字显示的字体大小 */
+      text-align: center; /* 文本居中对齐 */
+      margin-bottom: 20px; /* 添加一些底部间距 */
+    }
+    .btn {
+      margin-top: 10px;
+      margin-bottom: 10px; /* 添加顶部和底部间距 */
+      font-size: 24px; /* 调整按钮的字体大小 */
+      padding: 10px 20px; /* 调整按钮的内边距 */
+    }
+  </style>
+</head>
+<body>
+  <div id="timer" class="timer">24.0</div>
+  <button id="btnHome" class="btn">首页</button>
+  <button id="btnReset" class="btn">归零</button>
+  <button id="btnReset14" class="btn">回表</button>
+  <button id="btnStartPause" class="btn">开始/暂停</button>
+
+  <script>
+    var timerId; // 计时器ID
+    var timeRemaining = 24; // 剩余时间
+    var timerRunning = false; // 计时器是否正在运行
+
+    // 更新计时器显示
+    function updateTimer() {
+      document.getElementById('timer').innerText = timeRemaining.toFixed(1);
+    }
+
+    // 开始计时
+    function startTimer() {
+      timerId = setInterval(function() {
+        timeRemaining -= 0.1;
+        updateTimer();
+        if (timeRemaining <= 0) {
+          stopTimer();
+        }
+      }, 100);
+      timerRunning = true;
+    }
+
+    // 停止计时
+    function stopTimer() {
+      clearInterval(timerId);
+      timerRunning = false;
+    }
+
+    // 恢复计时到24秒
+    function resetTimer() {
+      timeRemaining = 24;
+      updateTimer();
+      stopTimer();
+    }
+
+    // 归零并自动开始计时
+    function resetAndStartTimer() {
+      if (!timerRunning) {
+        resetTimer();
+        startTimer();
+      }
+    }
+
+    // 回表并自动开始计时
+    function reset14AndStartTimer() {
+      if (!timerRunning) {
+        if (timerId) {
+          stopTimer();
+          resetTimer();
+        }
+        timeRemaining = 14;
+        updateTimer();
+        startTimer();
+      }
+    }
+
+    // 绑定按钮点击事件
+    document.getElementById('btnHome').addEventListener('click', resetTimer);
+    document.getElementById('btnReset').addEventListener('click', resetAndStartTimer);
+    document.getElementById('btnReset14').addEventListener('click', reset14AndStartTimer);
+    document.getElementById('btnStartPause').addEventListener('click', function() {
+      if (timerRunning) {
+        stopTimer();
+      } else {
+        startTimer();
+      }
+    });
+  </script>
+</body>
+</html>
