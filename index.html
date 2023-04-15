@@ -36,23 +36,23 @@
 
   <script>
     var timerId; // 计时器ID
-    var timeRemaining = 24; // 剩余时间
+    var timeRemaining = 24000; // 剩余时间，单位为毫秒
     var timerRunning = false; // 计时器是否正在运行
-
+    
     // 更新计时器显示
     function updateTimer() {
-      document.getElementById('timer').innerText = timeRemaining.toFixed(1);
+      document.getElementById('timer').innerText = (timeRemaining / 1000).toFixed(1);
     }
 
     // 开始计时
     function startTimer() {
       timerId = setInterval(function() {
-        timeRemaining -= 0.1;
+        timeRemaining -= 10; // 每次减少10毫秒
         updateTimer();
         if (timeRemaining <= 0) {
           stopTimer();
         }
-      }, 100);
+      }, 10); // 每隔10毫秒更新一次
       timerRunning = true;
     }
 
@@ -64,7 +64,7 @@
 
     // 恢复计时到24秒
     function resetTimer() {
-      timeRemaining = 24;
+      timeRemaining = 24000;
       updateTimer();
       stopTimer();
     }
@@ -80,7 +80,7 @@
     // 回表并自动开始计时
     function reset14AndStartTimer() {
       if (!timerRunning) {
-        timeRemaining = 14;
+        timeRemaining = 14000;
         updateTimer();
         startTimer();
       }
@@ -97,6 +97,7 @@
         startTimer();
       }
     });
+
   </script>
 </body>
 </html>
