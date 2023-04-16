@@ -26,6 +26,11 @@
       padding: 10px 20px; /* 调整按钮的内边距 */
       border-radius: 10px 10px 10px 10px; /* 设置圆角半径，使按钮变成圆角长方形 */
     }
+    /* 添加样式，设置按钮在计时器到0.0秒时不起作用 */
+    .btn.disabled {
+      opacity: 0.5;
+      pointer-events: none;
+    }
   </style>
   <link rel="stylesheet" href="styles.css">
 </head>
@@ -62,6 +67,8 @@
     function stopTimer() {
       clearInterval(timerId);
       timerRunning = false;
+      // 添加以下代码，将按钮设置为禁用状态
+      document.getElementById('btnStartPause').classList.add('disabled');
     }
 
     // 恢复计时到24秒
