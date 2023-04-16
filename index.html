@@ -77,6 +77,7 @@
         timeRemaining = 24000;
         updateTimer();
         stopTimer();
+        document.getElementById('btnStartPause').disabled = false; // 将按钮设置为可用状态
       }
     }
 
@@ -87,6 +88,7 @@
         updateTimer();
         stopTimer();
         startTimer();
+        document.getElementById('btnStartPause').disabled = false; // 将按钮设置为可用状态
       }
     }
 
@@ -96,6 +98,7 @@
         timeRemaining = 14000;
         updateTimer();
         startTimer();
+        document.getElementById('btnStartPause').disabled = false; // 将按钮设置为可用状态
       }
     }
 
