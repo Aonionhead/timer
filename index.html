@@ -66,15 +66,19 @@
 
     // 恢复计时到24秒
     function resetTimer() {
-      timeRemaining = 24000;
-      updateTimer();
-      stopTimer();
+      if (!timerRunning) {
+        timeRemaining = 24000;
+        updateTimer();
+        stopTimer();
+      }
     }
 
     // 归零并自动开始计时
     function resetAndStartTimer() {
       if (!timerRunning) {
-        resetTimer();
+        timeRemaining = 24000;
+        updateTimer();
+        stopTimer();
         startTimer();
       }
     }
