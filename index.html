@@ -67,8 +67,10 @@
     function stopTimer() {
       clearInterval(timerId);
       timerRunning = false;
-      // 添加以下代码，将按钮设置为禁用状态
-      document.getElementById('btnStartPause').classList.add('disabled');
+      if (timeRemaining <= 0) {
+        // 添加以下代码，将按钮设置为禁用状态
+        document.getElementById('btnStartPause').classList.add('disabled');
+      }
     }
 
     // 恢复计时到24秒
