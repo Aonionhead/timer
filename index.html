@@ -26,15 +26,6 @@
       padding: 10px 30px; /* 调整按钮的内边距 */
       border-radius: 10px 10px 10px 10px; /* 设置圆角半径，使按钮变成圆角长方形 */
     }
-    /* 添加样式，设置按钮在计时器到0.0秒时不起作用 */
-    .btn.disabled {
-      opacity: 0.5;
-      pointer-events: none;
-    }
-    /* 添加样式，设置按钮变为可用 */
-    .btn.abled {
-      pointer-events: auto;
-    }
   </style>
   <link rel="stylesheet" href="styles.css">
 </head>
@@ -58,20 +49,22 @@
 
     // 开始计时
     function startTimer() {
-      timerId = setInterval(function() {
+      if(timeRemaining>0){
+        timerId = setInterval(function() {
         timeRemaining -= 10; // 每次减少10毫秒
         updateTimer();
         if (timeRemaining <= 0) {
           stopTimer();
-          document.getElementById('btnStartPause').classList.add('disabled');
         }
       }, 10); // 每隔10毫秒更新一次
       timerRunning = true;
+      }
     }
 
     // 停止计时
     function stopTimer() {
       clearInterval(timerId);
+      // timerId=null;
       timerRunning = false;
     }
 
@@ -79,10 +72,6 @@
     function resetTimer() {
       if (!timerRunning) {
         timeRemaining = 24000;
-        if (document.getElementById('btnStartPause').classList.contains('disabled')) {
-            // 执行相应的操作
-            document.getElementById('btnStartPause').classList.remove('disabled');
-        }
         updateTimer();
         stopTimer();
       }
@@ -91,9 +80,6 @@
     // 归零并自动开始计时
     function resetAndStartTimer() {
       timeRemaining = 24000;
-      if (document.getElementById('btnStartPause').classList.contains('disabled')) {
-        document.getElementById('btnStartPause').classList.remove('disabled');
-      }
       updateTimer();
       stopTimer();
       startTimer();
@@ -102,10 +88,8 @@
     // 回表并自动开始计时
     function reset14AndStartTimer() {
       timeRemaining = 14000;
-      if (document.getElementById('btnStartPause').classList.contains('disabled')) {
-        document.getElementById('btnStartPause').classList.remove('disabled');
-      }
       updateTimer();
+      stopTimer();
       startTimer();
     }
 
