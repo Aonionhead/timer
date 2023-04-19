@@ -23,7 +23,7 @@
       margin-top: 15px;
       margin-bottom: 15px; /* 添加顶部和底部间距 */
       font-size: 48px; /* 调整按钮的字体大小 */
-      padding: 10px 20px; /* 调整按钮的内边距 */
+      padding: 10px 30px; /* 调整按钮的内边距 */
       border-radius: 10px 10px 10px 10px; /* 设置圆角半径，使按钮变成圆角长方形 */
     }
     /* 添加样式，设置按钮在计时器到0.0秒时不起作用 */
@@ -90,30 +90,25 @@
 
     // 归零并自动开始计时
     function resetAndStartTimer() {
-      if (!timerRunning) {
-        timeRemaining = 24000;
-        if (document.getElementById('btnStartPause').classList.contains('disabled')) {
-            // 执行相应的操作
-            document.getElementById('btnStartPause').classList.remove('disabled');
-        }
-        updateTimer();
-        stopTimer();
-        startTimer();
-        
+      timeRemaining = 24000;
+      if (document.getElementById('btnStartPause').classList.contains('disabled')) {
+        // 执行相应的操作
+        document.getElementById('btnStartPause').classList.remove('disabled');
       }
+      updateTimer();
+      stopTimer();
+      startTimer();
     }
 
     // 回表并自动开始计时
     function reset14AndStartTimer() {
-      if (!timerRunning) {
-        timeRemaining = 14000;
-        if (document.getElementById('btnStartPause').classList.contains('disabled')) {
-            // 执行相应的操作
-            document.getElementById('btnStartPause').classList.remove('disabled');
-        }
-        updateTimer();
-        startTimer();
-        
+      timeRemaining = 14000;
+      if (document.getElementById('btnStartPause').classList.contains('disabled')) {
+        // 执行相应的操作
+        document.getElementById('btnStartPause').classList.remove('disabled');
+      }
+      updateTimer();
+      startTimer();
       }
     }
 
