@@ -92,7 +92,6 @@
     function resetAndStartTimer() {
       timeRemaining = 24000;
       if (document.getElementById('btnStartPause').classList.contains('disabled')) {
-        // 执行相应的操作
         document.getElementById('btnStartPause').classList.remove('disabled');
       }
       updateTimer();
@@ -104,12 +103,10 @@
     function reset14AndStartTimer() {
       timeRemaining = 14000;
       if (document.getElementById('btnStartPause').classList.contains('disabled')) {
-        // 执行相应的操作
         document.getElementById('btnStartPause').classList.remove('disabled');
       }
       updateTimer();
       startTimer();
-      }
     }
 
     // 绑定按钮点击事件
